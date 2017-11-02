@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/boot-server/src/main/java/com/bing/boot/server/config/SwaggerConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/boot-server/src/main/java/com/bing/boot/server/controller/UserController.java">
           <value>
             <set />
