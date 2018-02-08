@@ -1,14 +1,18 @@
 package com.bing.boot.server.controller;
 
+import com.bing.boot.server.request.ValidateRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * Description:用户接口
@@ -28,5 +32,12 @@ public class UserController {
     public String login(@RequestParam String username) {
         logger.info("欢迎 {} 登录", username);
         return "login";
+    }
+
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    @ApiOperation(value = "参数校验", httpMethod = "POST", notes = "参数校验")
+    public Boolean validate(@Valid @RequestBody ValidateRequest request) {
+        logger.info("校验成功，{}", request);
+        return true;
     }
 }
