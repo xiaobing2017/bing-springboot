@@ -32,14 +32,14 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiOperation(value = "普通登录", httpMethod = "POST", notes = "根据用户填写资料验证登录")
-    public String login(@RequestParam @CallFrequency(key = PREFIX + "{value}") String username) {
+    public String login(@RequestParam @CallFrequency(key = PREFIX + "{self}") String username) {
         logger.info("欢迎 {} 登录", username);
         return "login";
     }
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     @ApiOperation(value = "参数校验", httpMethod = "POST", notes = "参数校验")
-    public Boolean validate(@Valid @RequestBody ValidateRequest request) {
+    public Boolean validate(@Valid @RequestBody @CallFrequency(key = PREFIX + "{username}") ValidateRequest request) {
         logger.info("校验成功，{}", request);
         return true;
     }
