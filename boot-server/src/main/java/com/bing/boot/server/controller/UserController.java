@@ -1,5 +1,6 @@
 package com.bing.boot.server.controller;
 
+import com.bing.boot.common.annotation.CallFrequency;
 import com.bing.boot.server.request.ValidateRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,9 +28,11 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+    private static final String PREFIX = "redis:";
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiOperation(value = "普通登录", httpMethod = "POST", notes = "根据用户填写资料验证登录")
-    public String login(@RequestParam String username) {
+    public String login(@RequestParam @CallFrequency(key = PREFIX + "{value}") String username) {
         logger.info("欢迎 {} 登录", username);
         return "login";
     }
